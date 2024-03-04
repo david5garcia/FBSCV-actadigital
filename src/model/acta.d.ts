@@ -7,41 +7,28 @@ type Acta = {
   fechaHora: string;
   terreno: string;
   delegado: string;
-  equipos: {
-    equipoLocal: Equipo;
-    equipoVisitante: Equipo;
-  };
-  arbitros: {
-    arbitroPrincipal: Arbitro;
-    arbitroPrimeraBase: Arbitro;
-    arbitroSegundaBase: Arbitro;
-    arbitroTerceraBase: Arbitro;
-  };
+  equipoLocal: string;
+  equipoVisitante: string;
+  arbitroPrincipal: string;
+  arbitroPrimeraBase: string;
+  arbitroSegundaBase: string;
+  arbitroTerceraBase: string;
+  entrenadorLocal: string;
+  entrenadorVisitante: string;
+  firmaEntrenadorLocal: string;
+  firmaEntrenadorVisitante: string;
+  firmaArbitroPrincipal: string;
   anotador: string;
   comisarioTecnico: string;
   amonestaciones: string;
   expulsiones: string;
   observaciones: string;
-};
-
-type Equipo = {
-  nombre: string;
-  entrenador: Entrenador;
-  resultado: Resultado;
-};
-
-type Entrenador = {
-  nombre: string;
-  firma: string;
-};
-
-type Arbitro = {
-  nombre: string;
-  firma?: string;
+  resultadoLocal: Resultado;
+  resultadoVisitante: Resultado;
 };
 
 type Resultado = {
   hits: number;
   errores: number;
-  carrerasPorEntrada: number[];
+  carrerasPorEntrada: {[key: number]: number | null};
 };

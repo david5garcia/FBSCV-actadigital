@@ -1,0 +1,22 @@
+.formActa {
+  label > input {
+    display: block;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+
+  tbody input {
+    border: 1px solid #ccc;
+    width: 40px;
+  }
+}
+
+.textBox {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+}

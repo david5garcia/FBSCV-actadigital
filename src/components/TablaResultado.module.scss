@@ -1,0 +1,18 @@
+.inverted-table {
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  white-space: nowrap;
+}
+
+.inverted-table th,
+.inverted-table td {
+  transform: rotate(90deg);
+  padding: 5px; /* Adjust padding as needed */
+  text-align: left; /* Adjust text alignment as needed */
+}
+
+/* Adjustments for the rotated table headers */
+.inverted-table th {
+  height: 150px; /* Set the height of the rotated header */
+  white-space: nowrap;
+}
