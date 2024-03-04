@@ -81,7 +81,7 @@ const TablaResultado = ({
                 type="number"
                 name={`${i + 1}`}
                 value={
-                  acta.resultadoLocal.carrerasPorEntrada[i + 1] === null &&
+                  acta.resultadoLocal.carrerasPorEntrada[i + 1] !== null &&
                   acta.resultadoLocal.carrerasPorEntrada[i + 1]! >= 0
                     ? acta.resultadoLocal.carrerasPorEntrada[i + 1]!
                     : ""
