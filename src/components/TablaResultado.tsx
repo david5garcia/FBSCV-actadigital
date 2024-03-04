@@ -1,5 +1,3 @@
-import style from "./TablaResultado.module.scss";
-
 const TablaResultado = ({
   acta,
   setActa
@@ -39,7 +37,7 @@ const TablaResultado = ({
     }));
   };
 
-  const handleHitsChangeLocal = (
+  const handleInputChangeLocal = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
@@ -47,49 +45,21 @@ const TablaResultado = ({
       ...prevActa,
       resultadoLocal: {
         ...prevActa.resultadoLocal,
-        hits: parseInt(value)
+        [name]: parseInt(value)
       }
     }));
   };
 
-    const handleHitsChangeVisitante = (
+    const handleInputChangeVisitante = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
         const { name, value } = e.target;
         setActa((prevActa) => ({
-        ...prevActa,
-        resultadoVisitante: {
+          ...prevActa,
+          resultadoVisitante: {
             ...prevActa.resultadoVisitante,
-            hits: parseInt(value)
-        }
-        }));
-    };
-
-  const handleErrorsChangeLocal = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    console.log(name, value);
-    setActa((prevActa) => ({
-      ...prevActa,
-      resultadoLocal: {
-        ...prevActa.resultadoLocal,
-        errores: parseInt(value)
-      }
-    }));
-  };
-
-    const handleErrorsChangeVisitante = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        const { name, value } = e.target;
-        console.log(name, value);
-        setActa((prevActa) => ({
-        ...prevActa,
-        resultadoVisitante: {
-            ...prevActa.resultadoVisitante,
-            errores: parseInt(value)
-        }
+            [name]: parseInt(value)
+          }
         }));
     };
 
@@ -111,9 +81,9 @@ const TablaResultado = ({
                 type="number"
                 name={`${i + 1}`}
                 value={
-                  acta.resultadoLocal.carrerasPorEntrada[i + 1] !== null &&
+                  acta.resultadoLocal.carrerasPorEntrada[i + 1] === null &&
                   acta.resultadoLocal.carrerasPorEntrada[i + 1]! >= 0
-                    ? acta.resultadoLocal.carrerasPorEntrada[i + 1]
+                    ? acta.resultadoLocal.carrerasPorEntrada[i + 1]!
                     : ""
                 }
                 onChange={handleRunChangeLocal}
@@ -126,7 +96,7 @@ const TablaResultado = ({
                 value={
                   acta.resultadoVisitante.carrerasPorEntrada[i + 1] !== null &&
                   acta.resultadoVisitante.carrerasPorEntrada[i + 1]! >= 0
-                    ? acta.resultadoVisitante.carrerasPorEntrada[i + 1]
+                    ? acta.resultadoVisitante.carrerasPorEntrada[i + 1]!
                     : ""
                 }
                 onChange={handleRunChangeVisitante}
@@ -155,8 +125,8 @@ const TablaResultado = ({
             <input
               type="number"
               name="hits"
-              value={acta.resultadoLocal.hits}
-              onChange={handleHitsChangeLocal}
+              value={acta.resultadoLocal.hits || ""}
+              onChange={handleInputChangeLocal}
             />
           </td>
           <td>
@@ -164,7 +134,7 @@ const TablaResultado = ({
               type="number"
               name="hits"
               value={acta.resultadoVisitante.hits}
-              onChange={handleHitsChangeVisitante}
+              onChange={handleInputChangeVisitante}
             />
           </td>
         </tr>
@@ -175,7 +145,7 @@ const TablaResultado = ({
               type="number"
               name="errores"
               value={acta.resultadoLocal.errores}
-              onChange={handleErrorsChangeLocal}
+              onChange={handleInputChangeLocal}
             />
           </td>
           <td>
@@ -183,7 +153,7 @@ const TablaResultado = ({
               type="number"
               name="errores"
               value={acta.resultadoVisitante.errores}
-              onChange={handleErrorsChangeVisitante}
+              onChange={handleInputChangeVisitante}
             />
           </td>
         </tr>
