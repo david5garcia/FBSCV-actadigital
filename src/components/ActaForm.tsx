@@ -1,7 +1,8 @@
 import { useLocalStorage } from "usehooks-ts";
-import styles from "./ActaForm.module.scss";
+import styles from "./css/ActaForm.module.scss";
 import TablaResultado from "./TablaResultado";
 import Firma from "./Firma";
+import { PdfGenerator } from "../utils/PdfGenerator";
 
 const ActaForm: React.FC = () => {
   const [acta, setActa] = useLocalStorage<Acta>("acta", {
@@ -93,7 +94,23 @@ const ActaForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setActa(acta);
+    setActa({
+      ...acta,
+      firmaArbitroPrincipal: getFirmaFromCanvas("firmaArbitroPrincipal") ?? "",
+      firmaEntrenadorLocal: getFirmaFromCanvas("firmaEntrenadorLocal") ?? "",
+      firmaEntrenadorVisitante:
+        getFirmaFromCanvas("firmaEtrenadorVisitante") ?? ""
+    });
+    console.log(acta);
+    PdfGenerator.generatePdf(acta);
+  };
+
+  const getFirmaFromCanvas = (containerId: string) => {
+    const canvas = document
+      .getElementById(containerId)
+      ?.getElementsByClassName("canvasContainer")[0]
+      .querySelector("canvas");
+    return canvas?.toDataURL();
   };
 
   return (
@@ -299,15 +316,15 @@ const ActaForm: React.FC = () => {
       </label>
 
       <h1>Firmas</h1>
-      <div id="firma-entrenador-local">
+      <div id="firmaEntrenadorLocal">
         <h2>Entrenador Local</h2>
         <Firma />
       </div>
-      <div id="firma-entrenador-visitante">
+      <div id="firmaEtrenadorVisitante">
         <h2>Entrenador Visitante</h2>
         <Firma />
       </div>
-      <div id="firma-arbitro-principal">
+      <div id="firmaArbitroPrincipal">
         <h2>Arbitro Principal</h2>
         <Firma />
       </div>
@@ -315,7 +332,6 @@ const ActaForm: React.FC = () => {
       <button
         className=" bg-slate-300 w-[50%] rounded-lg shadow-lg py-3 "
         type="submit"
-        
       >
         Guardar Acta
       </button>
