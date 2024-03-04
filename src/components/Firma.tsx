@@ -1,11 +1,12 @@
 import SignatureCanvas from "react-signature-canvas";
+import styles from "./Firma.module.scss";
 
 const Firma = () => {
   return (
     <div>
       <SignatureCanvas
-        penColor="green"
-        canvasProps={{ width: 500, height: 200, className: "sigCanvas" }}
+        penColor="blue"
+        canvasProps={{ className: styles.sigCanvas }}
       />
     </div>
   );

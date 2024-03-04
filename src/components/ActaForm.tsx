@@ -298,12 +298,24 @@ const ActaForm: React.FC = () => {
         />
       </label>
 
-        <h1>Firmas</h1>
-        <Firma/>
+      <h1>Firmas</h1>
+      <div id="firma-entrenador-local">
+        <h2>Entrenador Local</h2>
+        <Firma />
+      </div>
+      <div id="firma-entrenador-visitante">
+        <h2>Entrenador Visitante</h2>
+        <Firma />
+      </div>
+      <div id="firma-arbitro-principal">
+        <h2>Arbitro Principal</h2>
+        <Firma />
+      </div>
 
       <button
         className=" bg-slate-300 w-[50%] rounded-lg shadow-lg py-3 "
         type="submit"
+        
       >
         Guardar Acta
       </button>
