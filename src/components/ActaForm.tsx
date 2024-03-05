@@ -251,15 +251,7 @@ const ActaForm: React.FC = () => {
             onChange={handleInputChange}
           />
         </label>
-        <label>
-          Arbitro Principal
-          <input
-            type="text"
-            name="arbitroPrincipal"
-            value={acta.arbitroPrincipal.value}
-            onChange={handleInputChange}
-          />
-        </label>
+
         <label>
           Entrenador Local
           <input
@@ -298,7 +290,15 @@ const ActaForm: React.FC = () => {
         </label>
 
         <h2 className="text-2xl mt-8">Arbitros</h2>
-
+        <label>
+          Arbitro Principal
+          <input
+            type="text"
+            name="arbitroPrincipal"
+            value={acta.arbitroPrincipal.value}
+            onChange={handleInputChange}
+          />
+        </label>
         <label>
           Arbitro Primera Base
           <input
@@ -331,6 +331,8 @@ const ActaForm: React.FC = () => {
         <h2 className="text-2xl mt-8">Resultado</h2>
         <TablaResultado acta={acta} setActa={setActa} />
 
+
+<h2 className="mt-8 text-2xl">Otros</h2>
         <label>
           Amonestaciones
           <input
