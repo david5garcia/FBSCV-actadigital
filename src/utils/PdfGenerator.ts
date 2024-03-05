@@ -4,7 +4,7 @@ import logo from "../assets/logo.jpeg";
 
 export class PdfGenerator {
   public static generatePdf(acta: Acta) {
-    const doc = new jsPDF();
+    const doc = new jsPDF("p", "mm", "a4", true);
 
     //acta = filledActa;
     doc.setFont("helvetica");
