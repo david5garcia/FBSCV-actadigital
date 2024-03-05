@@ -78,7 +78,10 @@ const ActaForm: React.FC = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setActa((prevActa) => ({ ...prevActa, [name]: {value: value, errors: []} }));
+    setActa((prevActa) => ({
+      ...prevActa,
+      [name]: { value: value, errors: [] }
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -99,22 +102,44 @@ const ActaForm: React.FC = () => {
       }
     };
     setActa(updatedActa);
+    console.log(updatedActa);
+    if (!validateActa(updatedActa)) {
+      return;
+    }
     PdfGenerator.generatePdf(updatedActa);
   };
 
-  //   const validForm = (acta: Acta) => {
-  //     let errors: { [key: string]: string[] } = {};
+  const validateActa = (acta: Acta) => {
+    let validActa = true;
 
-  //     const nonEmptyFields = ["competicion", "equipoLocal", "equipoVisitante"];
+    validActa = checkEmptyFields(acta, validActa);
 
-  //     nonEmptyFields.forEach((field) => {
-  //       if (!acta[field]) {
-  //         errors.push(`El campo ${field} no puede estar vacío`);
-  //       }
-  //     });
+    return validActa;
+  };
 
-  //     return errors;
-  //   };
+  const checkEmptyFields = (acta: Acta, validActa: boolean) => {
+    const nonEmptyFields: (keyof Acta)[] = [
+      "competicion",
+      "equipoLocal",
+      "equipoVisitante"
+    ];
+    nonEmptyFields.forEach((field) => {
+      const fieldKey = acta[field];
+      if ("value" in fieldKey) {
+        if (fieldKey.value === "") {
+          setActa((prevActa) => ({
+            ...prevActa,
+            [field]: {
+              ...prevActa[field],
+              errors: ["Este campo no puede estar vacío"]
+            }
+          }));
+          validActa = false;
+        }
+      }
+    });
+    return validActa;
+  };
 
   const getFirmaFromCanvas = (containerId: string) => {
     const canvas = document
@@ -138,6 +163,11 @@ const ActaForm: React.FC = () => {
           value={acta.competicion.value}
           onChange={handleInputChange}
         />
+        {acta.competicion.errors.map((error, index) => (
+          <p key={index} className={styles.error}>
+            {error}
+          </p>
+        ))}
       </label>
       <label>
         Categoría
