@@ -3,6 +3,7 @@ import styles from "./css/ActaForm.module.scss";
 import TablaResultado from "./TablaResultado";
 import Firma from "./Firma";
 import { PdfGenerator } from "../utils/PdfGenerator";
+import { useState } from "react";
 
 const ActaForm: React.FC = () => {
   const [acta, setActa] = useLocalStorage<Acta>("acta", {
@@ -73,6 +74,7 @@ const ActaForm: React.FC = () => {
       }
     }
   });
+  const [errors, setErrors] = useState<boolean>(false);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -104,8 +106,10 @@ const ActaForm: React.FC = () => {
     setActa(updatedActa);
     console.log(updatedActa);
     if (!validateActa(updatedActa)) {
+      setErrors(true);
       return;
     }
+    setErrors(false);
     PdfGenerator.generatePdf(updatedActa);
   };
 
@@ -152,7 +156,7 @@ const ActaForm: React.FC = () => {
   return (
     <div className="mx-auto px-4 container">
       <form
-        className={`flex flex-col gap-4 ${styles.formActa}`}
+        className={`flex flex-col gap-4 mb-24 ${styles.formActa}`}
         onSubmit={handleSubmit}
       >
         <h1 className="text-[32px]">Acta</h1>
@@ -478,11 +482,16 @@ const ActaForm: React.FC = () => {
         </div>
 
         <button
-          className=" bg-[#104777] w-[50%] rounded-lg shadow-lg py-3 my-6 text-white center text-lg"
+          className=" bg-[#104777] w-[50%] rounded-lg shadow-lg py-3 mt-6  text-white center text-lg"
           type="submit"
         >
           Guardar Acta
         </button>
+        {errors && (
+          <p className={styles.error}>
+            Hay errores en el acta, por favor revisa los campos y vuelve a intentarlo
+          </p>
+        )}
       </form>
     </div>
   );
