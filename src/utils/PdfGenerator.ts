@@ -9,7 +9,7 @@ export class PdfGenerator {
     //acta = filledActa;
     doc.setFont("helvetica");
 
-    doc.addImage(logo, "JPEG", 10, 5, 20, 20, "", "FAST");
+    doc.addImage(logo, "JPEG", 10, 5, 20, 20, undefined, "FAST");
 
     doc.setFontSize(20);
     doc.setTextColor("#104777");
@@ -338,7 +338,7 @@ export class PdfGenerator {
   }) {
     doc.text(label, x, y);
     doc.rect(x, y + 2, width, height, "D");
-    doc.addImage(input, "PNG", x, y + 2, width, height, "", "FAST");
+    doc.addImage(input, "PNG", x, y + 2, width, height, undefined, "FAST");
   }
 
   private static generateResultTable(
