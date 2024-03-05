@@ -1,7 +1,6 @@
 import autoTable from "jspdf-autotable";
 import { jsPDF } from "jspdf";
 import logo from "../assets/logo.jpeg";
-import { filledActa } from "./FilledActa";
 
 export class PdfGenerator {
   public static generatePdf(acta: Acta) {
