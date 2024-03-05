@@ -1,34 +1,49 @@
 type Acta = {
-  competicion: string;
-  categoria: string;
-  division: string;
-  modalidad: string;
-  localidad: string;
-  fechaHora: string;
-  terreno: string;
-  delegado: string;
-  equipoLocal: string;
-  equipoVisitante: string;
-  arbitroPrincipal: string;
-  arbitroPrimeraBase: string;
-  arbitroSegundaBase: string;
-  arbitroTerceraBase: string;
-  entrenadorLocal: string;
-  entrenadorVisitante: string;
-  firmaEntrenadorLocal: string;
-  firmaEntrenadorVisitante: string;
-  firmaArbitroPrincipal: string;
-  anotador: string;
-  comisarioTecnico: string;
-  amonestaciones: string;
-  expulsiones: string;
-  observaciones: string;
+  competicion: ContentString;
+  categoria: ContentString;
+  division: ContentString;
+  modalidad: ContentString;
+  localidad: ContentString;
+  fechaHora: ContentString;
+  terreno: ContentString;
+  delegado: ContentString;
+  equipoLocal: ContentString;
+  equipoVisitante: ContentString;
+  arbitroPrincipal: ContentString;
+  arbitroPrimeraBase: ContentString;
+  arbitroSegundaBase: ContentString;
+  arbitroTerceraBase: ContentString;
+  entrenadorLocal: ContentString;
+  entrenadorVisitante: ContentString;
+  firmaEntrenadorLocal: ContentString;
+  firmaEntrenadorVisitante: ContentString;
+  firmaArbitroPrincipal: ContentString;
+  anotador: ContentString;
+  comisarioTecnico: ContentString;
+  amonestaciones: ContentString;
+  expulsiones: ContentString;
+  observaciones: ContentString;
   resultadoLocal: Resultado;
   resultadoVisitante: Resultado;
 };
 
 type Resultado = {
-  hits: number;
-  errores: number;
-  carrerasPorEntrada: {[key: number]: number | null};
+  hits: ContentNumber;
+  errores: ContentNumber;
+  carrerasPorEntrada: {
+    [key: number]: {
+      value: number | null;
+      errors: string[];
+    };
+  };
+};
+
+type ContentString = {
+  value: string;
+  errors: string[];
+};
+
+type ContentNumber = {
+  value: number;
+  errors: string[];
 };

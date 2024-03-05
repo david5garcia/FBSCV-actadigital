@@ -31,7 +31,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc: doc,
       label: "Competicion",
-      input: acta.competicion,
+      input: acta.competicion.value,
       x: 10,
       y: yLine,
       width: 190,
@@ -42,7 +42,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "Categoría",
-      input: acta.categoria,
+      input: acta.categoria.value,
       x: 10,
       y: yLine,
       width: 80,
@@ -51,7 +51,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "División",
-      input: acta.division,
+      input: acta.division.value,
       x: 100,
       y: yLine,
       width: 30,
@@ -60,7 +60,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "Modalidad: Beisbol o Sofbol",
-      input: acta.modalidad,
+      input: acta.modalidad.value,
       x: 140,
       y: yLine,
       width: 60,
@@ -71,7 +71,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "Localidad",
-      input: acta.localidad,
+      input: acta.localidad.value,
       x: 10,
       y: yLine,
       width: 90,
@@ -80,7 +80,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "Fecha",
-      input: new Date(acta.fechaHora).toLocaleDateString(),
+      input: new Date(acta.fechaHora.value).toLocaleDateString(),
       x: 110,
       y: yLine,
       width: 40,
@@ -89,7 +89,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "Hora",
-      input: new Date(acta.fechaHora).toLocaleTimeString(),
+      input: new Date(acta.fechaHora.value).toLocaleTimeString(),
       x: 160,
       y: yLine,
       width: 40,
@@ -100,7 +100,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "Terreno de Juego",
-      input: acta.terreno,
+      input: acta.terreno.value,
       x: 10,
       y: yLine,
       width: 90,
@@ -109,7 +109,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "Delegado de Campo",
-      input: acta.delegado,
+      input: acta.delegado.value,
       x: 110,
       y: yLine,
       width: 90,
@@ -120,7 +120,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "Equipo Local",
-      input: acta.equipoLocal,
+      input: acta.equipoLocal.value,
       x: 10,
       y: yLine,
       width: 90,
@@ -129,7 +129,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "Equipo Visitante",
-      input: acta.equipoVisitante,
+      input: acta.equipoVisitante.value,
       x: 110,
       y: yLine,
       width: 90,
@@ -140,7 +140,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "Entrenador Equipo Local",
-      input: acta.entrenadorLocal,
+      input: acta.entrenadorLocal.value,
       x: 10,
       y: yLine,
       width: 90,
@@ -149,7 +149,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "Entrenador Equipo Visitante",
-      input: acta.entrenadorVisitante,
+      input: acta.entrenadorVisitante.value,
       x: 110,
       y: yLine,
       width: 90,
@@ -160,7 +160,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "Arbitro Principal",
-      input: acta.arbitroPrincipal,
+      input: acta.arbitroPrincipal.value,
       x: 10,
       y: yLine,
       width: 90,
@@ -169,7 +169,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "Arbitro Primera Base",
-      input: acta.arbitroPrimeraBase,
+      input: acta.arbitroPrimeraBase.value,
       x: 110,
       y: yLine,
       width: 90,
@@ -180,7 +180,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "Arbitro Segunda Base",
-      input: acta.arbitroSegundaBase,
+      input: acta.arbitroSegundaBase.value,
       x: 10,
       y: yLine,
       width: 90,
@@ -189,7 +189,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "Arbitro Tercera Base",
-      input: acta.arbitroTerceraBase,
+      input: acta.arbitroTerceraBase.value,
       x: 110,
       y: yLine,
       width: 90,
@@ -200,7 +200,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "Anotador",
-      input: acta.anotador,
+      input: acta.anotador.value,
       x: 10,
       y: yLine,
       width: 90,
@@ -209,7 +209,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "Comisario Técnico",
-      input: acta.comisarioTecnico,
+      input: acta.comisarioTecnico.value,
       x: 110,
       y: yLine,
       width: 90,
@@ -221,8 +221,8 @@ export class PdfGenerator {
       doc,
       acta.resultadoLocal,
       acta.resultadoVisitante,
-      acta.equipoLocal,
-      acta.equipoVisitante,
+      acta.equipoLocal.value,
+      acta.equipoVisitante.value,
       yLine
     );
 
@@ -230,7 +230,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "Amonestaciones",
-      input: acta.amonestaciones,
+      input: acta.amonestaciones.value,
       x: 10,
       y: yLine,
       width: 190,
@@ -241,7 +241,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "Expulsiones",
-      input: acta.expulsiones,
+      input: acta.expulsiones.value,
       x: 10,
       y: yLine,
       width: 190,
@@ -252,7 +252,7 @@ export class PdfGenerator {
     this.generateLabelAndInput({
       doc,
       label: "Observaciones",
-      input: acta.observaciones,
+      input: acta.observaciones.value,
       x: 10,
       y: yLine,
       width: 190,
@@ -263,7 +263,7 @@ export class PdfGenerator {
     this.generateLabelAndSignature({
       doc,
       label: "Firma Entrenador Local",
-      input: acta.firmaEntrenadorLocal,
+      input: acta.firmaEntrenadorLocal.value,
       x: 10,
       y: yLine,
       width: 60,
@@ -273,7 +273,7 @@ export class PdfGenerator {
     this.generateLabelAndSignature({
       doc,
       label: "Firma Arbitro Principal",
-      input: acta.firmaArbitroPrincipal,
+      input: acta.firmaArbitroPrincipal.value,
       x: 75,
       y: yLine,
       width: 60,
@@ -283,7 +283,7 @@ export class PdfGenerator {
     this.generateLabelAndSignature({
       doc,
       label: "Firma Entrenador Visitante",
-      input: acta.firmaEntrenadorVisitante,
+      input: acta.firmaEntrenadorVisitante.value,
       x: 140,
       y: yLine,
       width: 60,
@@ -291,7 +291,9 @@ export class PdfGenerator {
     });
 
     doc.save(
-      `${acta.equipoLocal}_vs_${acta.equipoVisitante}_${Date.now()}.pdf`
+      `${acta.equipoLocal.value}_vs_${
+        acta.equipoVisitante.value
+      }_${Date.now()}.pdf`
     );
   }
 
@@ -314,7 +316,7 @@ export class PdfGenerator {
   }) {
     doc.text(label, x, y);
     doc.rect(x, y + 1, width, height, "D");
-    doc.text(input, x + 2, y + 4);
+    doc.text(doc.splitTextToSize(input, width - 4), x + 2, y + 4);
   }
 
   private static generateLabelAndSignature({
@@ -336,7 +338,7 @@ export class PdfGenerator {
   }) {
     doc.text(label, x, y);
     doc.rect(x, y + 2, width, height, "D");
-    doc.addImage(input, "PNG", x + 2, y + 6, 60, 50);
+    doc.addImage(input, "PNG", x, y + 2, width, height);
   }
 
   private static generateResultTable(
@@ -349,31 +351,58 @@ export class PdfGenerator {
   ) {
     const resultadoLocalTotal = Object.values(
       resultadoLocal.carrerasPorEntrada
-    ).reduce((acc, curr) => acc! + (curr || 0), 0);
+    ).reduce((acc, curr) => acc! + (curr.value || 0), 0);
     const resultadoVisitanteTotal = Object.values(
       resultadoVisitante.carrerasPorEntrada
-    ).reduce((acc, curr) => acc! + (curr || 0), 0);
+    ).reduce((acc, curr) => acc! + (curr.value || 0), 0);
 
     autoTable(doc, {
       startY: y,
-      styles: { fontSize: 9},
-      head: [["Equipo", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "Total", "Hits", "Errores"]],
-        body: [
-            [
-            equipoLocal,
-            ...Object.values(resultadoLocal.carrerasPorEntrada),
-            resultadoLocalTotal,
-            resultadoLocal.hits,
-            resultadoLocal.errores
-            ],
-            [
-            equipoVisitante,
-            ...Object.values(resultadoVisitante.carrerasPorEntrada),
-            resultadoVisitanteTotal,
-            resultadoVisitante.hits,
-            resultadoVisitante.errores
-            ]
+      styles: { fontSize: 9 },
+      headStyles: { fillColor: "#104777" },
+      head: [
+        [
+          "Equipo",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "Total",
+          "Hits",
+          "Errores"
         ]
+      ],
+      body: [
+        [
+          equipoLocal,
+          ...Object.values(resultadoLocal.carrerasPorEntrada).map((entrada) =>
+            typeof entrada.value == "number" ? entrada.value : ""
+          ),
+          resultadoLocalTotal,
+          resultadoLocal.hits.value,
+          resultadoLocal.errores.value
+        ],
+        [
+          equipoVisitante,
+          ...Object.values(resultadoVisitante.carrerasPorEntrada).map(
+            (entrada) => (typeof entrada.value == "number" ? entrada.value : "")
+          ),
+          resultadoVisitanteTotal,
+          resultadoVisitante.hits.value,
+          resultadoVisitante.errores.value
+        ]
+      ]
     });
   }
 }

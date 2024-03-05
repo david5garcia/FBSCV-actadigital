@@ -6,70 +6,70 @@ import { PdfGenerator } from "../utils/PdfGenerator";
 
 const ActaForm: React.FC = () => {
   const [acta, setActa] = useLocalStorage<Acta>("acta", {
-    competicion: "",
-    categoria: "",
-    division: "",
-    modalidad: "",
-    localidad: "",
-    fechaHora: "",
-    terreno: "",
-    delegado: "",
-    equipoLocal: "",
-    equipoVisitante: "",
-    arbitroPrincipal: "",
-    arbitroPrimeraBase: "",
-    arbitroSegundaBase: "",
-    arbitroTerceraBase: "",
-    entrenadorLocal: "",
-    entrenadorVisitante: "",
-    firmaEntrenadorLocal: "",
-    firmaEntrenadorVisitante: "",
-    firmaArbitroPrincipal: "",
-    anotador: "",
-    comisarioTecnico: "",
-    amonestaciones: "",
-    expulsiones: "",
-    observaciones: "",
+    competicion: { value: "", errors: [] },
+    categoria: { value: "", errors: [] },
+    division: { value: "", errors: [] },
+    modalidad: { value: "", errors: [] },
+    localidad: { value: "", errors: [] },
+    fechaHora: { value: "", errors: [] },
+    terreno: { value: "", errors: [] },
+    delegado: { value: "", errors: [] },
+    equipoLocal: { value: "", errors: [] },
+    equipoVisitante: { value: "", errors: [] },
+    arbitroPrincipal: { value: "", errors: [] },
+    arbitroPrimeraBase: { value: "", errors: [] },
+    arbitroSegundaBase: { value: "", errors: [] },
+    arbitroTerceraBase: { value: "", errors: [] },
+    entrenadorLocal: { value: "", errors: [] },
+    entrenadorVisitante: { value: "", errors: [] },
+    firmaEntrenadorLocal: { value: "", errors: [] },
+    firmaEntrenadorVisitante: { value: "", errors: [] },
+    firmaArbitroPrincipal: { value: "", errors: [] },
+    anotador: { value: "", errors: [] },
+    comisarioTecnico: { value: "", errors: [] },
+    amonestaciones: { value: "", errors: [] },
+    expulsiones: { value: "", errors: [] },
+    observaciones: { value: "", errors: [] },
     resultadoLocal: {
-      hits: 0,
-      errores: 0,
+      hits: { value: 0, errors: [] },
+      errores: { value: 0, errors: [] },
       carrerasPorEntrada: {
-        1: null,
-        2: null,
-        3: null,
-        4: null,
-        5: null,
-        6: null,
-        7: null,
-        8: null,
-        9: null,
-        10: null,
-        11: null,
-        12: null,
-        13: null,
-        14: null,
-        15: null
+        1: { value: null, errors: [] },
+        2: { value: null, errors: [] },
+        3: { value: null, errors: [] },
+        4: { value: null, errors: [] },
+        5: { value: null, errors: [] },
+        6: { value: null, errors: [] },
+        7: { value: null, errors: [] },
+        8: { value: null, errors: [] },
+        9: { value: null, errors: [] },
+        10: { value: null, errors: [] },
+        11: { value: null, errors: [] },
+        12: { value: null, errors: [] },
+        13: { value: null, errors: [] },
+        14: { value: null, errors: [] },
+        15: { value: null, errors: [] }
       }
     },
     resultadoVisitante: {
-      hits: 0,
-      errores: 0,
+      hits: { value: 0, errors: [] },
+      errores: { value: 0, errors: [] },
       carrerasPorEntrada: {
-        1: null,
-        2: null,
-        3: null,
-        4: null,
-        5: null,
-        6: null,
-        7: null,
-        8: null,
-        9: null,
-        10: null,
-        11: null,
-        12: null,
-        13: null,
-        14: null,
-        15: null
+        1: { value: null, errors: [] },
+        2: { value: null, errors: [] },
+        3: { value: null, errors: [] },
+        4: { value: null, errors: [] },
+        5: { value: null, errors: [] },
+        6: { value: null, errors: [] },
+        7: { value: null, errors: [] },
+        8: { value: null, errors: [] },
+        9: { value: null, errors: [] },
+        10: { value: null, errors: [] },
+        11: { value: null, errors: [] },
+        12: { value: null, errors: [] },
+        13: { value: null, errors: [] },
+        14: { value: null, errors: [] },
+        15: { value: null, errors: [] }
       }
     }
   });
@@ -78,20 +78,43 @@ const ActaForm: React.FC = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setActa((prevActa) => ({ ...prevActa, [name]: value }));
+    setActa((prevActa) => ({ ...prevActa, [name]: {value: value, errors: []} }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const updatedActa = {
-    ...acta,
-    firmaArbitroPrincipal: getFirmaFromCanvas("firmaArbitroPrincipal") ?? "",
-    firmaEntrenadorLocal: getFirmaFromCanvas("firmaEntrenadorLocal") ?? "",
-    firmaEntrenadorVisitante: getFirmaFromCanvas("firmaEtrenadorVisitante") ?? ""
+      ...acta,
+      firmaArbitroPrincipal: {
+        value: getFirmaFromCanvas("firmaArbitroPrincipal") ?? "",
+        errors: []
+      },
+      firmaEntrenadorLocal: {
+        value: getFirmaFromCanvas("firmaEntrenadorLocal") ?? "",
+        errors: []
+      },
+      firmaEntrenadorVisitante: {
+        value: getFirmaFromCanvas("firmaEtrenadorVisitante") ?? "",
+        errors: []
+      }
     };
     setActa(updatedActa);
     PdfGenerator.generatePdf(updatedActa);
   };
+
+  //   const validForm = (acta: Acta) => {
+  //     let errors: { [key: string]: string[] } = {};
+
+  //     const nonEmptyFields = ["competicion", "equipoLocal", "equipoVisitante"];
+
+  //     nonEmptyFields.forEach((field) => {
+  //       if (!acta[field]) {
+  //         errors.push(`El campo ${field} no puede estar vacío`);
+  //       }
+  //     });
+
+  //     return errors;
+  //   };
 
   const getFirmaFromCanvas = (containerId: string) => {
     const canvas = document
@@ -112,7 +135,7 @@ const ActaForm: React.FC = () => {
         <input
           type="text"
           name="competicion"
-          value={acta.competicion}
+          value={acta.competicion.value}
           onChange={handleInputChange}
         />
       </label>
@@ -121,7 +144,7 @@ const ActaForm: React.FC = () => {
         <input
           type="text"
           name="categoria"
-          value={acta.categoria}
+          value={acta.categoria.value}
           onChange={handleInputChange}
         />
       </label>
@@ -130,7 +153,7 @@ const ActaForm: React.FC = () => {
         <input
           type="text"
           name="division"
-          value={acta.division}
+          value={acta.division.value}
           onChange={handleInputChange}
         />
       </label>
@@ -139,7 +162,7 @@ const ActaForm: React.FC = () => {
         <input
           type="text"
           name="modalidad"
-          value={acta.modalidad}
+          value={acta.modalidad.value}
           onChange={handleInputChange}
         />
       </label>
@@ -148,7 +171,7 @@ const ActaForm: React.FC = () => {
         <input
           type="text"
           name="localidad"
-          value={acta.localidad}
+          value={acta.localidad.value}
           onChange={handleInputChange}
         />
       </label>
@@ -157,7 +180,7 @@ const ActaForm: React.FC = () => {
         <input
           type="datetime-local"
           name="fechaHora"
-          value={acta.fechaHora}
+          value={acta.fechaHora.value}
           onChange={handleInputChange}
         />
       </label>
@@ -166,7 +189,7 @@ const ActaForm: React.FC = () => {
         <input
           type="text"
           name="terreno"
-          value={acta.terreno}
+          value={acta.terreno.value}
           onChange={handleInputChange}
         />
       </label>
@@ -175,7 +198,7 @@ const ActaForm: React.FC = () => {
         <input
           type="text"
           name="delegado"
-          value={acta.delegado}
+          value={acta.delegado.value}
           onChange={handleInputChange}
         />
       </label>
@@ -184,7 +207,7 @@ const ActaForm: React.FC = () => {
         <input
           type="text"
           name="equipoLocal"
-          value={acta.equipoLocal}
+          value={acta.equipoLocal.value}
           onChange={handleInputChange}
         />
       </label>
@@ -193,7 +216,7 @@ const ActaForm: React.FC = () => {
         <input
           type="text"
           name="equipoVisitante"
-          value={acta.equipoVisitante}
+          value={acta.equipoVisitante.value}
           onChange={handleInputChange}
         />
       </label>
@@ -202,7 +225,7 @@ const ActaForm: React.FC = () => {
         <input
           type="text"
           name="arbitroPrincipal"
-          value={acta.arbitroPrincipal}
+          value={acta.arbitroPrincipal.value}
           onChange={handleInputChange}
         />
       </label>
@@ -211,7 +234,7 @@ const ActaForm: React.FC = () => {
         <input
           type="text"
           name="arbitroPrimeraBase"
-          value={acta.arbitroPrimeraBase}
+          value={acta.arbitroPrimeraBase.value}
           onChange={handleInputChange}
         />
       </label>
@@ -220,7 +243,7 @@ const ActaForm: React.FC = () => {
         <input
           type="text"
           name="arbitroSegundaBase"
-          value={acta.arbitroSegundaBase}
+          value={acta.arbitroSegundaBase.value}
           onChange={handleInputChange}
         />
       </label>
@@ -229,7 +252,7 @@ const ActaForm: React.FC = () => {
         <input
           type="text"
           name="arbitroTerceraBase"
-          value={acta.arbitroTerceraBase}
+          value={acta.arbitroTerceraBase.value}
           onChange={handleInputChange}
         />
       </label>
@@ -238,7 +261,7 @@ const ActaForm: React.FC = () => {
         <input
           type="text"
           name="entrenadorLocal"
-          value={acta.entrenadorLocal}
+          value={acta.entrenadorLocal.value}
           onChange={handleInputChange}
         />
       </label>
@@ -247,7 +270,7 @@ const ActaForm: React.FC = () => {
         <input
           type="text"
           name="entrenadorVisitante"
-          value={acta.entrenadorVisitante}
+          value={acta.entrenadorVisitante.value}
           onChange={handleInputChange}
         />
       </label>
@@ -256,7 +279,7 @@ const ActaForm: React.FC = () => {
         <input
           type="text"
           name="anotador"
-          value={acta.anotador}
+          value={acta.anotador.value}
           onChange={handleInputChange}
         />
       </label>
@@ -265,7 +288,7 @@ const ActaForm: React.FC = () => {
         <input
           type="text"
           name="comisarioTecnico"
-          value={acta.comisarioTecnico}
+          value={acta.comisarioTecnico.value}
           onChange={handleInputChange}
         />
       </label>
@@ -278,7 +301,7 @@ const ActaForm: React.FC = () => {
           type="text"
           name="amonestaciones"
           className={styles.textBox}
-          value={acta.amonestaciones}
+          value={acta.amonestaciones.value}
           onChange={handleInputChange}
         />
       </label>
@@ -288,7 +311,7 @@ const ActaForm: React.FC = () => {
           type="text"
           name="expulsiones"
           className={styles.textBox}
-          value={acta.expulsiones}
+          value={acta.expulsiones.value}
           onChange={handleInputChange}
         />
       </label>
@@ -298,7 +321,7 @@ const ActaForm: React.FC = () => {
           type="text"
           name="observaciones"
           className={styles.textBox}
-          value={acta.observaciones}
+          value={acta.observaciones.value}
           onChange={handleInputChange}
         />
       </label>

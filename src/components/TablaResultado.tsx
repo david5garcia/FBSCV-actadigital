@@ -15,7 +15,7 @@ const TablaResultado = ({
         ...prevActa.resultadoLocal,
         carrerasPorEntrada: {
           ...prevActa.resultadoLocal.carrerasPorEntrada,
-          [name]: parseInt(value)
+          [name]: {value: parseInt(value), errors: []}
         }
       }
     }));
@@ -31,7 +31,7 @@ const TablaResultado = ({
         ...prevActa.resultadoVisitante,
         carrerasPorEntrada: {
           ...prevActa.resultadoVisitante.carrerasPorEntrada,
-          [name]: parseInt(value)
+          [name]: {value: parseInt(value), errors: []}
         }
       }
     }));
@@ -45,7 +45,7 @@ const TablaResultado = ({
       ...prevActa,
       resultadoLocal: {
         ...prevActa.resultadoLocal,
-        [name]: parseInt(value)
+        [name]: {value: parseInt(value), errors: []}
       }
     }));
   };
@@ -58,7 +58,7 @@ const TablaResultado = ({
           ...prevActa,
           resultadoVisitante: {
             ...prevActa.resultadoVisitante,
-            [name]: parseInt(value)
+            [name]: {value: parseInt(value), errors: []}
           }
         }));
     };
@@ -81,9 +81,10 @@ const TablaResultado = ({
                 type="number"
                 name={`${i + 1}`}
                 value={
-                  acta.resultadoLocal.carrerasPorEntrada[i + 1] !== null &&
-                  acta.resultadoLocal.carrerasPorEntrada[i + 1]! >= 0
-                    ? acta.resultadoLocal.carrerasPorEntrada[i + 1]!
+                  acta.resultadoLocal.carrerasPorEntrada[i + 1].value !==
+                    null &&
+                  acta.resultadoLocal.carrerasPorEntrada[i + 1]!.value! >= 0
+                    ? acta.resultadoLocal.carrerasPorEntrada[i + 1]!.value!
                     : ""
                 }
                 onChange={handleRunChangeLocal}
@@ -94,9 +95,10 @@ const TablaResultado = ({
                 type="number"
                 name={`${i + 1}`}
                 value={
-                  acta.resultadoVisitante.carrerasPorEntrada[i + 1] !== null &&
-                  acta.resultadoVisitante.carrerasPorEntrada[i + 1]! >= 0
-                    ? acta.resultadoVisitante.carrerasPorEntrada[i + 1]!
+                  acta.resultadoVisitante.carrerasPorEntrada[i + 1].value !==
+                    null &&
+                  acta.resultadoVisitante.carrerasPorEntrada[i + 1]!.value! >= 0
+                    ? acta.resultadoVisitante.carrerasPorEntrada[i + 1]!.value!
                     : ""
                 }
                 onChange={handleRunChangeVisitante}
@@ -108,13 +110,13 @@ const TablaResultado = ({
           <td>Total</td>
           <td>
             {Object.values(acta.resultadoLocal.carrerasPorEntrada).reduce(
-              (acc, curr) => acc! + (curr || 0),
+              (acc, curr) => acc! + (curr.value || 0),
               0
             )}
           </td>
           <td>
             {Object.values(acta.resultadoVisitante.carrerasPorEntrada).reduce(
-              (acc, curr) => acc! + (curr || 0),
+              (acc, curr) => acc! + (curr.value || 0),
               0
             )}
           </td>
@@ -125,7 +127,7 @@ const TablaResultado = ({
             <input
               type="number"
               name="hits"
-              value={acta.resultadoLocal.hits || ""}
+              value={acta.resultadoLocal.hits.value || ""}
               onChange={handleInputChangeLocal}
             />
           </td>
@@ -133,7 +135,7 @@ const TablaResultado = ({
             <input
               type="number"
               name="hits"
-              value={acta.resultadoVisitante.hits}
+              value={acta.resultadoVisitante.hits.value}
               onChange={handleInputChangeVisitante}
             />
           </td>
@@ -144,7 +146,7 @@ const TablaResultado = ({
             <input
               type="number"
               name="errores"
-              value={acta.resultadoLocal.errores}
+              value={acta.resultadoLocal.errores.value}
               onChange={handleInputChangeLocal}
             />
           </td>
@@ -152,7 +154,7 @@ const TablaResultado = ({
             <input
               type="number"
               name="errores"
-              value={acta.resultadoVisitante.errores}
+              value={acta.resultadoVisitante.errores.value}
               onChange={handleInputChangeVisitante}
             />
           </td>
