@@ -6,6 +6,7 @@ const Firma = () => {
     <div className="canvasContainer">
       <SignatureCanvas
         penColor="blue"
+        clearOnResize={false}
         canvasProps={{ className: styles.sigCanvas }}
       />
     </div>
