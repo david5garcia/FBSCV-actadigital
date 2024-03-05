@@ -11,32 +11,36 @@ const TablaResultado = ({
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setActa((prevActa) => ({
-      ...prevActa,
-      resultadoLocal: {
-        ...prevActa.resultadoLocal,
-        carrerasPorEntrada: {
-          ...prevActa.resultadoLocal.carrerasPorEntrada,
-          [name]: {value: parseInt(value), errors: []}
+    if (parseInt(value) >= 0) {
+      setActa((prevActa) => ({
+        ...prevActa,
+        resultadoLocal: {
+          ...prevActa.resultadoLocal,
+          carrerasPorEntrada: {
+            ...prevActa.resultadoLocal.carrerasPorEntrada,
+            [name]: { value: parseInt(value), errors: [] }
+          }
         }
-      }
-    }));
+      }));
+    }
   };
 
   const handleRunChangeVisitante = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setActa((prevActa) => ({
-      ...prevActa,
-      resultadoVisitante: {
-        ...prevActa.resultadoVisitante,
-        carrerasPorEntrada: {
-          ...prevActa.resultadoVisitante.carrerasPorEntrada,
-          [name]: {value: parseInt(value), errors: []}
+    if (parseInt(value) >= 0) {
+      setActa((prevActa) => ({
+        ...prevActa,
+        resultadoVisitante: {
+          ...prevActa.resultadoVisitante,
+          carrerasPorEntrada: {
+            ...prevActa.resultadoVisitante.carrerasPorEntrada,
+            [name]: { value: parseInt(value), errors: [] }
+          }
         }
-      }
-    }));
+      }));
+    }
   };
 
   const handleInputChangeLocal = (
@@ -47,23 +51,23 @@ const TablaResultado = ({
       ...prevActa,
       resultadoLocal: {
         ...prevActa.resultadoLocal,
-        [name]: {value: parseInt(value), errors: []}
+        [name]: { value: parseInt(value), errors: [] }
       }
     }));
   };
 
-    const handleInputChangeVisitante = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        const { name, value } = e.target;
-        setActa((prevActa) => ({
-          ...prevActa,
-          resultadoVisitante: {
-            ...prevActa.resultadoVisitante,
-            [name]: {value: parseInt(value), errors: []}
-          }
-        }));
-    };
+  const handleInputChangeVisitante = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setActa((prevActa) => ({
+      ...prevActa,
+      resultadoVisitante: {
+        ...prevActa.resultadoVisitante,
+        [name]: { value: parseInt(value), errors: [] }
+      }
+    }));
+  };
 
   return (
     <table className={styles.table}>
@@ -85,9 +89,7 @@ const TablaResultado = ({
                 inputMode="numeric"
                 name={`${i + 1}`}
                 value={
-                  acta.resultadoLocal.carrerasPorEntrada[i + 1].value !==
-                    null &&
-                  acta.resultadoLocal.carrerasPorEntrada[i + 1]!.value! >= 0
+                  acta.resultadoLocal.carrerasPorEntrada[i + 1].value !== null
                     ? acta.resultadoLocal.carrerasPorEntrada[i + 1]!.value!
                     : ""
                 }
@@ -102,8 +104,7 @@ const TablaResultado = ({
                 name={`${i + 1}`}
                 value={
                   acta.resultadoVisitante.carrerasPorEntrada[i + 1].value !==
-                    null &&
-                  acta.resultadoVisitante.carrerasPorEntrada[i + 1]!.value! >= 0
+                  null
                     ? acta.resultadoVisitante.carrerasPorEntrada[i + 1]!.value!
                     : ""
                 }
@@ -133,7 +134,7 @@ const TablaResultado = ({
             <input
               type="number"
               name="hits"
-              value={acta.resultadoLocal.hits.value || ""}
+              value={acta.resultadoLocal.hits.value}
               onChange={handleInputChangeLocal}
             />
           </td>

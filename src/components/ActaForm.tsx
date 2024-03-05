@@ -331,8 +331,7 @@ const ActaForm: React.FC = () => {
         <h2 className="text-2xl mt-8">Resultado</h2>
         <TablaResultado acta={acta} setActa={setActa} />
 
-
-<h2 className="mt-8 text-2xl">Otros</h2>
+        <h2 className="mt-8 text-2xl">Otros</h2>
         <label>
           Amonestaciones
           <input
