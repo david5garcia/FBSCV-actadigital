@@ -178,6 +178,11 @@ const ActaForm: React.FC = () => {
             value={acta.categoria.value}
             onChange={handleInputChange}
           />
+          {acta.categoria.errors.map((error, index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
         </label>
         <label>
           División
@@ -187,6 +192,11 @@ const ActaForm: React.FC = () => {
             value={acta.division.value}
             onChange={handleInputChange}
           />
+          {acta.division.errors.map((error, index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
         </label>
         <label>
           Modalidad
@@ -196,6 +206,11 @@ const ActaForm: React.FC = () => {
             value={acta.modalidad.value}
             onChange={handleInputChange}
           />
+          {acta.modalidad.errors.map((error, index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
         </label>
         <label>
           Localidad
@@ -205,6 +220,11 @@ const ActaForm: React.FC = () => {
             value={acta.localidad.value}
             onChange={handleInputChange}
           />
+          {acta.localidad.errors.map((error, index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
         </label>
         <label>
           Fecha y Hora
@@ -214,6 +234,11 @@ const ActaForm: React.FC = () => {
             value={acta.fechaHora.value}
             onChange={handleInputChange}
           />
+          {acta.fechaHora.errors.map((error, index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
         </label>
         <label>
           Terreno
@@ -223,6 +248,11 @@ const ActaForm: React.FC = () => {
             value={acta.terreno.value}
             onChange={handleInputChange}
           />
+          {acta.terreno.errors.map((error, index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
         </label>
         <label>
           Delegado
@@ -232,6 +262,11 @@ const ActaForm: React.FC = () => {
             value={acta.delegado.value}
             onChange={handleInputChange}
           />
+          {acta.delegado.errors.map((error, index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
         </label>
         <label>
           Equipo Local
@@ -241,6 +276,11 @@ const ActaForm: React.FC = () => {
             value={acta.equipoLocal.value}
             onChange={handleInputChange}
           />
+          {acta.equipoLocal.errors.map((error, index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
         </label>
         <label>
           Equipo Visitante
@@ -250,6 +290,11 @@ const ActaForm: React.FC = () => {
             value={acta.equipoVisitante.value}
             onChange={handleInputChange}
           />
+          {acta.equipoVisitante.errors.map((error, index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
         </label>
 
         <label>
@@ -260,6 +305,11 @@ const ActaForm: React.FC = () => {
             value={acta.entrenadorLocal.value}
             onChange={handleInputChange}
           />
+          {acta.entrenadorLocal.errors.map((error, index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
         </label>
         <label>
           Entrenador Visitante
@@ -269,6 +319,11 @@ const ActaForm: React.FC = () => {
             value={acta.entrenadorVisitante.value}
             onChange={handleInputChange}
           />
+          {acta.entrenadorVisitante.errors.map((error, index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
         </label>
         <label>
           Anotador
@@ -278,6 +333,11 @@ const ActaForm: React.FC = () => {
             value={acta.anotador.value}
             onChange={handleInputChange}
           />
+          {acta.anotador.errors.map((error, index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
         </label>
         <label>
           Comisario Técnico
@@ -287,6 +347,11 @@ const ActaForm: React.FC = () => {
             value={acta.comisarioTecnico.value}
             onChange={handleInputChange}
           />
+          {acta.comisarioTecnico.errors.map((error, index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
         </label>
 
         <h2 className="text-2xl mt-8">Arbitros</h2>
@@ -298,6 +363,11 @@ const ActaForm: React.FC = () => {
             value={acta.arbitroPrincipal.value}
             onChange={handleInputChange}
           />
+          {acta.arbitroPrincipal.errors.map((error, index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
         </label>
         <label>
           Arbitro Primera Base
@@ -307,6 +377,11 @@ const ActaForm: React.FC = () => {
             value={acta.arbitroPrimeraBase.value}
             onChange={handleInputChange}
           />
+          {acta.arbitroPrimeraBase.errors.map((error, index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
         </label>
 
         <label>
@@ -317,6 +392,11 @@ const ActaForm: React.FC = () => {
             value={acta.arbitroSegundaBase.value}
             onChange={handleInputChange}
           />
+          {acta.arbitroSegundaBase.errors.map((error, index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
         </label>
         <label>
           Arbitro Tercera Base
@@ -326,6 +406,11 @@ const ActaForm: React.FC = () => {
             value={acta.arbitroTerceraBase.value}
             onChange={handleInputChange}
           />
+          {acta.arbitroTerceraBase.errors.map((error, index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
         </label>
 
         <h2 className="text-2xl mt-8">Resultado</h2>
@@ -341,6 +426,11 @@ const ActaForm: React.FC = () => {
             value={acta.amonestaciones.value}
             onChange={handleInputChange}
           />
+          {acta.amonestaciones.errors.map((error, index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
         </label>
         <label>
           Expulsiones
@@ -351,6 +441,11 @@ const ActaForm: React.FC = () => {
             value={acta.expulsiones.value}
             onChange={handleInputChange}
           />
+          {acta.expulsiones.errors.map((error, index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
         </label>
         <label>
           Observaciones
@@ -361,6 +456,11 @@ const ActaForm: React.FC = () => {
             value={acta.observaciones.value}
             onChange={handleInputChange}
           />
+          {acta.observaciones.errors.map((error, index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
         </label>
 
         <h2 className="text-2xl mt-8">Firmas</h2>
