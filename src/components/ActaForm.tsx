@@ -48,12 +48,7 @@ const ActaForm: React.FC = () => {
         12: null,
         13: null,
         14: null,
-        15: null,
-        16: null,
-        17: null,
-        18: null,
-        19: null,
-        20: null
+        15: null
       }
     },
     resultadoVisitante: {
@@ -74,12 +69,7 @@ const ActaForm: React.FC = () => {
         12: null,
         13: null,
         14: null,
-        15: null,
-        16: null,
-        17: null,
-        18: null,
-        19: null,
-        20: null
+        15: null
       }
     }
   });
@@ -94,15 +84,14 @@ const ActaForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setActa({
-      ...acta,
-      firmaArbitroPrincipal: getFirmaFromCanvas("firmaArbitroPrincipal") ?? "",
-      firmaEntrenadorLocal: getFirmaFromCanvas("firmaEntrenadorLocal") ?? "",
-      firmaEntrenadorVisitante:
-        getFirmaFromCanvas("firmaEtrenadorVisitante") ?? ""
-    });
-    console.log(acta);
-    PdfGenerator.generatePdf(acta);
+    const updatedActa = {
+    ...acta,
+    firmaArbitroPrincipal: getFirmaFromCanvas("firmaArbitroPrincipal") ?? "",
+    firmaEntrenadorLocal: getFirmaFromCanvas("firmaEntrenadorLocal") ?? "",
+    firmaEntrenadorVisitante: getFirmaFromCanvas("firmaEtrenadorVisitante") ?? ""
+    };
+    setActa(updatedActa);
+    PdfGenerator.generatePdf(updatedActa);
   };
 
   const getFirmaFromCanvas = (containerId: string) => {

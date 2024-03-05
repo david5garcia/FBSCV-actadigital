@@ -73,7 +73,7 @@ const TablaResultado = ({
         </tr>
       </thead>
       <tbody>
-        {Array.from({ length: 20 }, (_, i) => (
+        {Array.from({ length: 15 }, (_, i) => (
           <tr key={i + 1}>
             <td>{i + 1}</td>
             <td key={i + 1}>

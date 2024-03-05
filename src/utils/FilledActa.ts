@@ -24,7 +24,7 @@ export const filledActa: Acta = {
       6: 0,
       7: 0,
       8: 0,
-      9: 0
+      9: 0,
     },
     hits: 2,
     errores: 1
