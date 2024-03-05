@@ -1,3 +1,5 @@
+import styles from "./css/TablaResultado.module.scss";
+
 const TablaResultado = ({
   acta,
   setActa
@@ -64,7 +66,7 @@ const TablaResultado = ({
     };
 
   return (
-    <table>
+    <table className={styles.table}>
       <thead>
         <tr>
           <th></th>

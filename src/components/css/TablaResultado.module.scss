@@ -1,18 +1,20 @@
-.inverted-table {
-  transform: rotate(-90deg);
-  transform-origin: top left;
-  white-space: nowrap;
+.table {
+  border-collapse: collapse;
+  width: 100%;
 }
 
-.inverted-table th,
-.inverted-table td {
-  transform: rotate(90deg);
-  padding: 5px; /* Adjust padding as needed */
-  text-align: left; /* Adjust text alignment as needed */
+.table th,
+.table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center; 
+  input {
+    border-radius: 5px;
+    text-align: center;
+  }
 }
 
-/* Adjustments for the rotated table headers */
-.inverted-table th {
-  height: 150px; /* Set the height of the rotated header */
-  white-space: nowrap;
+.table th {
+  background-color: #104777;
+  color: white;
 }
