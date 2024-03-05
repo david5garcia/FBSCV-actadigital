@@ -1,0 +1,36 @@
+.nav-items:hover {
+  background: white;
+  transition: 1000ms;
+  color: #104777;
+}
+.nav-items {
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .nav-items-container {
+    flex-direction: column;
+    padding: 10px 0;
+    line-height: normal;
+    gap: 3px;
+    position: absolute;
+    height: auto !important;
+    right: 0;
+    top: 95px;
+    width: 100%;
+    background-color: #fdfbf7e3;
+    justify-content: end;
+    align-items: end !important;
+    padding-bottom: 2rem;
+  }
+  .nav-items {
+    margin-right: 0px !important;
+    font-size: 30px;
+    color: #104777;
+  }
+
+  .hiddenClass {
+    display: none !important;
+  }
+}
