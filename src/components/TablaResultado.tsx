@@ -79,6 +79,8 @@ const TablaResultado = ({
             <td key={i + 1}>
               <input
                 type="number"
+                pattern="[0-9]*"
+                inputMode="numeric"
                 name={`${i + 1}`}
                 value={
                   acta.resultadoLocal.carrerasPorEntrada[i + 1].value !==
@@ -93,6 +95,8 @@ const TablaResultado = ({
             <td>
               <input
                 type="number"
+                pattern="[0-9]*"
+                inputMode="numeric"
                 name={`${i + 1}`}
                 value={
                   acta.resultadoVisitante.carrerasPorEntrada[i + 1].value !==
