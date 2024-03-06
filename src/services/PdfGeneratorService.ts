@@ -2,7 +2,7 @@ import autoTable from "jspdf-autotable";
 import { jsPDF } from "jspdf";
 import logo from "../assets/logo.jpeg";
 
-export class PdfGenerator {
+export class PdfGeneratorService {
   public static generatePdf(acta: Acta) {
     const doc = new jsPDF("p", "mm", "a4", true);
 
