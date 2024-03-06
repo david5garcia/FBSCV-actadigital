@@ -2,8 +2,8 @@ import { useLocalStorage } from "usehooks-ts";
 import styles from "./css/ActaForm.module.scss";
 import TablaResultado from "./TablaResultado";
 import Firma from "./Firma";
-import { PdfGenerator } from "../utils/PdfGenerator";
 import { useState } from "react";
+import { PdfGeneratorService } from "../services/PdfGeneratorService";
 
 const ActaForm: React.FC = () => {
   const [acta, setActa] = useLocalStorage<Acta>("acta", {
@@ -80,10 +80,18 @@ const ActaForm: React.FC = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setActa((prevActa) => ({
-      ...prevActa,
-      [name]: { value: value, errors: [] }
-    }));
+
+    setActa((prevActa) => {
+      const updatedActa = {
+        ...prevActa,
+        [name]: { ...prevActa[name as keyof Acta], value: value }
+      };
+
+      const updatedActaWithErrors = updateActaWithErrors(updatedActa);
+      checkValidActa(updatedActaWithErrors);
+
+      return updatedActaWithErrors;
+    });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -103,25 +111,35 @@ const ActaForm: React.FC = () => {
         errors: []
       }
     };
-    setActa(updatedActa);
-    console.log(updatedActa);
-    if (!validateActa(updatedActa)) {
-      setErrors(true);
+    const updatedActaWithErrors = updateActaWithErrors(updatedActa);
+
+    setActa(updatedActaWithErrors);
+
+    if (!checkValidActa(updatedActaWithErrors)) {
       return;
     }
+    PdfGeneratorService.generatePdf(updatedActaWithErrors);
+  };
+
+  const checkValidActa = (acta: Acta) => {
+    for (const field in acta) {
+      const fieldValue = acta[field as keyof Acta];
+      if ("value" in fieldValue && fieldValue.errors.length > 0) {
+        setErrors(true);
+        return false;
+      }
+    }
     setErrors(false);
-    PdfGenerator.generatePdf(updatedActa);
+    return true;
   };
 
-  const validateActa = (acta: Acta) => {
-    let validActa = true;
+  const updateActaWithErrors = (acta: Acta) => {
+    const updatedActawithErrors = checkEmptyFields(acta);
 
-    validActa = checkEmptyFields(acta, validActa);
-
-    return validActa;
+    return updatedActawithErrors as Acta;
   };
 
-  const checkEmptyFields = (acta: Acta, validActa: boolean) => {
+  const checkEmptyFields = (acta: Acta) => {
     const nonEmptyFields: (keyof Acta)[] = [
       "competicion",
       "equipoLocal",
@@ -131,18 +149,13 @@ const ActaForm: React.FC = () => {
       const fieldKey = acta[field];
       if ("value" in fieldKey) {
         if (fieldKey.value === "") {
-          setActa((prevActa) => ({
-            ...prevActa,
-            [field]: {
-              ...prevActa[field],
-              errors: ["Este campo no puede estar vacío"]
-            }
-          }));
-          validActa = false;
+          fieldKey.errors = ["Este campo no puede estar vacío"];
+        } else {
+          fieldKey.errors = [];
         }
       }
     });
-    return validActa;
+    return acta;
   };
 
   const getFirmaFromCanvas = (containerId: string) => {
@@ -489,7 +502,8 @@ const ActaForm: React.FC = () => {
         </button>
         {errors && (
           <p className={styles.error}>
-            Hay errores en el acta, por favor revisa los campos y vuelve a intentarlo
+            Hay errores en el acta, por favor revisa los campos y vuelve a
+            intentarlo
           </p>
         )}
       </form>
