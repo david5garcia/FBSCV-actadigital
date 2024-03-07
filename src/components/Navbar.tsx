@@ -1,10 +1,8 @@
-import { Link, BrowserRouter, Routes, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useState } from "react";
 import { Hamburger } from "./Hamburger";
 import styles from "./css/Navbar.module.scss";
-import ActaForm from "./ActaForm";
-import Home from "./Home";
 
 const Navbar = () => {
   const [isHamburgerOpened, setIsHamburgerOpened] = useState(false);
