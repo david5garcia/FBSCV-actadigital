@@ -75,6 +75,7 @@ const ActaForm: React.FC = () => {
     }
   });
   const [errors, setErrors] = useState<boolean>(false);
+  const [submitted, setSubmitted] = useState<boolean>(false);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -87,15 +88,19 @@ const ActaForm: React.FC = () => {
         [name]: { ...prevActa[name as keyof Acta], value: value }
       };
 
-      const updatedActaWithErrors = updateActaWithErrors(updatedActa);
-      checkValidActa(updatedActaWithErrors);
+      if (submitted) {
+        const updatedActaWithErrors = updateActaWithErrors(updatedActa);
+        checkValidActa(updatedActaWithErrors);
+        return updatedActaWithErrors;
+      }
 
-      return updatedActaWithErrors;
+      return updatedActa;
     });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitted(true);
     const updatedActa = {
       ...acta,
       firmaArbitroPrincipal: {
