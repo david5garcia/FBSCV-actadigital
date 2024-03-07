@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col w-[100%] items-center gap-4">
-      <div className="flex flex-col w-[100%] items-center gap-3 my-8 p-4">
+      <div className="flex flex-col w-[100%] items-center gap-3 my-8 py-6 px-10">
         <h1 className="text-[#104777] text-[2.7rem] font-bold text-center">
           Acta Digital FBSCV
         </h1>
@@ -20,13 +20,13 @@ const Home = () => {
       </div>
 
       <Link to="/acta" onClick={handleNewActaClick}>
-        <button className="bg-[#104777] text-white w-[220px] font-semibold py-4 rounded-lg shadow-xl">
+        <button className="bg-[#104777] text-white w-[260px] font-semibold py-4 rounded-lg shadow-xl text-lg">
           Nueva Acta
         </button>
       </Link>
       {actaPresent && (
         <Link to="/acta">
-          <button className="text-[#104777] bg-gray-50 w-[220px] font-semibold py-4 rounded-lg shadow-xl">
+          <button className="text-[#104777] bg-gray-50 w-[260px] font-semibold py-4 rounded-lg shadow-xl text-lg">
             Continuar Acta
           </button>
         </Link>
