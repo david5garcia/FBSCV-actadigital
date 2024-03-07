@@ -10,10 +10,10 @@ const Home = () => {
   return (
     <div className="flex flex-col w-[100%] items-center gap-4">
       <div className="flex flex-col w-[100%] items-center gap-3 my-8 p-4">
-        <h1 className="text-[#104777] text-3xl font-bold">
+        <h1 className="text-[#104777] text-[2.7rem] font-bold text-center">
           Acta Digital FBSCV
         </h1>
-        <p className="text-[#104777] text-center">
+        <p className="text-[#104777] text-center text-lg">
           Bienvenido al sistema de Acta Digital FBSCV, seleccione una opción
           para continuar.
         </p>
