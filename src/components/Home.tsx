@@ -14,8 +14,7 @@ const Home = () => {
           Acta Digital FBSCV
         </h1>
         <p className="text-[#104777] text-center text-lg">
-          Bienvenido al sistema de Acta Digital FBSCV, seleccione una opción
-          para continuar.
+          Bienvenido al sistema de Acta Digital FBSCV, aquí podrás crear y firmar actas de encuentros de Beisbol y Sofbol.
         </p>
       </div>
 
