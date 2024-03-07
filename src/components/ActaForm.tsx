@@ -143,7 +143,8 @@ const ActaForm: React.FC = () => {
     const nonEmptyFields: (keyof Acta)[] = [
       "competicion",
       "equipoLocal",
-      "equipoVisitante"
+      "equipoVisitante",
+      "fechaHora"
     ];
     nonEmptyFields.forEach((field) => {
       const fieldKey = acta[field];
